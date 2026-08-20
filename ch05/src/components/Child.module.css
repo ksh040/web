@@ -23,3 +23,7 @@
 .activeBtn:hover{
   border:2px solid red;
 }
+
+.is_active{
+  background: yellow;
+}
