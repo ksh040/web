@@ -7,9 +7,10 @@ import Checkbox from './components/html/Checkbox'
 import TodoHeader from './components/TodoHeader'
 import TodoEditor from './components/TodoEditor'
 import TodoList from './components/TodoList'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 function App() {
-  const [todos, setTodos] = useState<Todo[]>([]);
+  const [todos, setTodos] = useState<Todo[]>(()=>
+    JSON.parse(localStorage.getItem('todos')||'[]'));
   const addTodo = (title:string) =>{
     setTodos((todos)=>[
       ...todos,
@@ -35,6 +36,9 @@ function App() {
       todos.map((todo)=>(todo.id === id ? {...todo,title} : todo))
     ));
   }
+  useEffect(()=>{
+    localStorage.setItem('todos',JSON.stringify(todos))
+  },[todos])
   return (
     <>
       <div className="todo">
