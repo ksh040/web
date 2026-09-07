@@ -1,4 +1,4 @@
-import { useState,useEffect,useRef, use } from 'react'
+import { useState,useRef} from 'react'
 import { SplashPage } from './pages/SplashPage'
 import { Onboarding01Page } from './pages/Onboarding01Page'
 import { Onboarding02Page } from './pages/Onboarding02Page'
@@ -39,17 +39,12 @@ function getHashForRoute(page:CurrentPage): string{
 export function App() {
   const initialRoute = getRouteFromHash();
   const [currentPage, setCurrentPage] = useState<CurrentPage>(initialRoute.page);
-  const [workspace,setWorkspace] = useState(null);
-  const [isDrawerOpen,setIsDrawerOpen]= useState(false);
-  const [isNotificationOpen,setIsNotificationOpen] = useState(false);
+  
   const previousRouteRef = useRef<AppRoute|null>(null);
-  const drawerTriggerRef = useRef<HTMLElement|null>(null);
 
   const handleRouteChange = (route:AppRoute):void =>{
     setCurrentPage(route.page);
 
-    setIsDrawerOpen(false);
-    setIsNotificationOpen(false);
   }
 
   const handleNavigate = (page:CurrentPage):void =>{
